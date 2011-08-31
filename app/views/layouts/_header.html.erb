@@ -1,0 +1,20 @@
+<header id="header" class="clearfix">
+  <hgroup>
+    <h1>Critters</h1>
+  </hgroup>
+	
+  <nav id="nav" class="clearfix">
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "About", about_path %></li>
+      <% if logged_in? %>
+        <li><%= link_to "Log out", logout_path %></li>
+      <% else %>
+        <li><%= link_to "Sign up", signup_path %></li>
+        <li><%= link_to "Log in", login_path %></li>
+      <% end %>      
+    </ul>
+  </nav>
+
+</header>
+ 
