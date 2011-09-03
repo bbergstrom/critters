@@ -27,4 +27,11 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
+
+  def show
+    @user = User.find(params[:id])
+    @critters = @user.critters
+    @title = @user.username
+  end
+
 end

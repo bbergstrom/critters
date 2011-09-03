@@ -46,3 +46,11 @@ body {
 #footer .copyright {
   font-size:9px;
 }
+
+/* Critters */
+table.critters th {
+  padding:0 5px;
+}
+table.critters td {
+  padding:5px;
+}
