@@ -17,8 +17,12 @@ body {
   margin:10px;
 }
 #nav {
-  margin-bottom:20px;
   background-color:#CCC;
+}
+#nav a,
+#nav a:active,
+#nav a:visited {
+  color:#67A;
 }
 #nav ul {
   padding:0;
@@ -36,8 +40,14 @@ body {
 #nav ul li a:hover {
   background-color: #DDD;
 }
+h2.crumb {
+  font-size:14;
+  color:#CCC;
+  margin-bottom:10px;
+}
 #content {
   padding: 20px;
+  padding-top:0;
   margin-bottom:20px;
 }
 #footer {
@@ -47,10 +57,35 @@ body {
   font-size:9px;
 }
 
+/* General */
+.right {
+  float:right;
+}
+.left {
+  float:left;
+}
+
+/* Forms */
+div.field {
+  padding:5px;
+}
+div.field label {
+  font-weight:bold;
+}
+div.actions {
+  padding:10px;
+}
+
 /* Critters */
+table.critters {
+  width:100%;
+}
+table.critters caption {
+  font-size:18px;;
+}
 table.critters th {
-  padding:0 5px;
+  padding:0 10px;
 }
 table.critters td {
-  padding:5px;
+  padding:10px;
 }

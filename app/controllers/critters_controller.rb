@@ -12,6 +12,7 @@ class CrittersController < ApplicationController
   # GET /critters/1.xml
   def show
     @critter = Critter.find(params[:id])
+    @title = @critter.name
 
     # show.html.erb
   end
@@ -19,6 +20,7 @@ class CrittersController < ApplicationController
   # GET /critters/new
   def new
     @critter = Critter.new
+    @title = 'Hunting for a Critter'
 
     # new.html.erb
   end
@@ -26,12 +28,12 @@ class CrittersController < ApplicationController
   # GET /critters/1/edit
   def edit
     @critter = Critter.find(params[:id])
+    @title = @critter.name
   end
 
   # POST /critters
   def create
     @critter = current_user.critters.build(params[:critter])
-    #@critter.build_critter
     if @critter.save
       redirect_to(@critter, :notice => 'Critter was successfully created.')
     else

@@ -1,5 +1,5 @@
 require 'uri'
-require 'open-uri'
+require 'curb'
 
 class Critter < ActiveRecord::Base
   belongs_to :user
@@ -8,7 +8,7 @@ class Critter < ActiveRecord::Base
   validates :url, :presence => true,
                   :format => { :with => URI::regexp(%w(http https)) }
   validates :user_id, :presence => true
-  before_save :birth
+  before_create :birth
 
   BASE_STATS = {
     :level => 1,
@@ -150,10 +150,11 @@ class Critter < ActiveRecord::Base
     }
   }
 
-  def validate_url(url)
-    r = open(url)
-    p r.status
-    return (r.status[0] == '200')
+  def url_status
+    c = Curl::Easy.http_head url
+    c.perform
+    logger.debug "url_status for #{url} is #{c.response_code}"
+    return (c.response_code == 200)
   end
 
   def parse_dna(url)
@@ -175,6 +176,8 @@ class Critter < ActiveRecord::Base
     return result
   end
 
+  # Run through DNA and apply symbol traits.
+  # Supported traits :add_one_per_level, :add_10_per_level, :double, :unable
   def build_stats(dna)
     # TODO: write rules around genetic traits
     # TODO: change mass assignment so attr_accessible security can be turned back on
@@ -182,12 +185,15 @@ class Critter < ActiveRecord::Base
   end
 
   def birth
-    if validate_url(url)
+    us = url_status
+    logger.debug us
+    if us
       domain = URI.split(url)[2]
       dna = parse_dna(domain)
       build_stats(dna)
       logger.debug "Critter #{name} built from #{domain}: #{dna}"
     else
+      errors.add :url, " is a facade.  Only true URLs are domains for critters."
       return false
     end
   end

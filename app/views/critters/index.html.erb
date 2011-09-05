@@ -1,20 +1,17 @@
-
-<table class="critters">
-  <tr>
-    <th>Name</th>
-    <th>Url</th>
-    <th>Sex</th>
-    <th>Level</th>
-    <th>Hp</th>
-    <th>Dodge</th>
-    <th>Crit</th>
-    <th>Elements</th>
-    <th>Damage</th>
-    <th>Absorb</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= link_to 'New Critter', new_critter_path, :class => 'button right' %>
+<table class="clearfix critters">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Sex</th>
+      <th>Level</th>
+      <th>Hp</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
 <% @critters.each do |critter| %>
   <tr>
@@ -23,77 +20,9 @@
     <td><%= critter.sex %></td>
     <td><%= critter.level %></td>
     <td><%= critter.hp %></td>
-    <td><%= critter.dodge %></td>
-    <td><%= critter.crit %></td>
-    <td>
-    <table>
-      <tr>
-        <th>F</th>
-        <th>E</th>
-        <th>W</th>
-        <th>A</th>
-        <th>L</th>
-        <th>D</th>
-      </tr>
-      <tr>
-        <td><%= critter.fire %></td>
-        <td><%= critter.earth %></td>
-        <td><%= critter.water %></td>
-        <td><%= critter.air %></td>
-        <td><%= critter.light %></td>
-        <td><%= critter.dark %></td>
-      </tr>
-    </table>
-  </td>
-  <td>
-    <table>
-      <tr>
-        <th>P</th>
-        <th>F</th>
-        <th>E</th>
-        <th>W</th>
-        <th>A</th>
-        <th>L</th>
-        <th>D</th>
-      </tr>
-      <tr>
-        <td><%= critter.physical_damage %></td>
-        <td><%= critter.fire_damage %></td>
-        <td><%= critter.earth_damage %></td>
-        <td><%= critter.water_damage %></td>
-        <td><%= critter.air_damage %></td>
-        <td><%= critter.light_damage %></td>
-        <td><%= critter.dark_damage %></td>
-      </tr>
-    </table>
-  </td>
-  <td>
-    <table>
-      <tr>
-        <th>F</th>
-        <th>E</th>
-        <th>W</th>
-        <th>A</th>
-        <th>L</th>
-        <th>D</th>
-      </tr>
-      <tr>
-        <td><%= critter.absorb_fire %></td>
-        <td><%= critter.absorb_earth %></td>
-        <td><%= critter.absorb_water %></td>
-        <td><%= critter.absorb_air %></td>
-        <td><%= critter.absorb_light %></td>
-        <td><%= critter.absorb_dark %></td>
-      </tr>
-    </table>
-  </td>
     <td><%= link_to 'Show', critter %></td>
     <td><%= link_to 'Edit', edit_critter_path(critter) %></td>
     <td><%= link_to 'Destroy', critter, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Critter', new_critter_path %>

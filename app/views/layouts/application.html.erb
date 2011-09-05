@@ -22,7 +22,7 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
   <!-- CSS: implied media="all" -->
-  <%= stylesheet_link_tag "style", "application", :media => "all", :cache => "styles" %>
+  <%= stylesheet_link_tag "style", "jquery-ui", "application", :media => "all", :cache => "styles" %>
 
   <!-- More ideas for your <head> here: h5bp.com/docs/#head-Tips -->
 
@@ -42,9 +42,9 @@
       <%= content_tag(:div, value, :class => "flash #{key}") %>
     <% end %>
 
-    <h2><%= @title %></h2>
+    <h2 class="crumb">==== <%= @title %> ====</h2>
 
-    <%= yield %> <!--! end of #container -->
+    <%= yield %> <!-- end of #container -->
   </section>
   
   <%= render 'layouts/footer'%>

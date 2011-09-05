@@ -10,7 +10,7 @@ module Critters
   class Application < Rails::Application
     config.autoload_paths << "#{config.root}/lib"    # Added by the Rails HTML5 Boilerplate Template
     # https://github.com/russfrisch/Rails-HTML5-Boilerplate-Template, written by Russ Frisch
-    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery-ui plugins)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery_ujs jquery-ui plugins)
   
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
