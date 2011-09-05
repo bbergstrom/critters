@@ -1,4 +1,6 @@
 class CrittersController < ApplicationController
+  before_filter :login_required
+  
   # GET /critters
   def index
     @title = "Your Critters"
