@@ -4,6 +4,7 @@ require 'curb'
 class Critter < ActiveRecord::Base
   belongs_to :user
   #attr_accessible :name, :url
+  attr_accessor :dna
   validates :name, :presence => true
   validates :url, :presence => true,
                   :format => { :with => URI::regexp(%w(http https)) }
@@ -37,7 +38,12 @@ class Critter < ActiveRecord::Base
   }
   LETTERS = ("a".."z")
   NUMBERS = (0..9)
-  ALLELE_PAIRS = %w{ DD DR RD RR }
+  ALLELE_PAIRS = [
+    [:d, :d],
+    [:d, :r],
+    [:r, :d],
+    [:r, :r]
+  ]
   # Genetics definition, by chromosome, allele, then trait symbol.
   GENETICS = {
     'e' => {
@@ -150,6 +156,19 @@ class Critter < ActiveRecord::Base
     }
   }
 
+  def birth
+    us = url_status
+    if us
+      domain = URI.split(url)[2]
+      @dna = parse_dna(domain)
+      self.attributes = build_stats(dna)
+      logger.debug "Critter #{name} built from #{domain}: #{dna.inspect}"
+    else
+      errors.add :url, " is a facade.  Only true URLs are domains for critters."
+      return false
+    end
+  end
+
   def url_status
     c = Curl::Easy.http_head url
     c.perform
@@ -173,29 +192,65 @@ class Critter < ActiveRecord::Base
         result[n] = ALLELE_PAIRS[n]
       end
     end
+    logger.debug "DNA result #{result.inspect}"
     return result
   end
 
   # Run through DNA and apply symbol traits.
   # Supported traits :add_one_per_level, :add_10_per_level, :double, :unable
   def build_stats(dna)
-    # TODO: write rules around genetic traits
+    stats = BASE_STATS
     # TODO: change mass assignment so attr_accessible security can be turned back on
-    self.attributes=(BASE_STATS)
+    # dna = { a => 'AA' } where a is chromo and A is allele
+    dna.each do |chromo, alleles|
+      logger.debug "Processing dna: #{chromo} = #{alleles.inspect}"
+      genetic = GENETICS[chromo]
+      logger.debug "Matching genetic: #{genetic.inspect}"
+      alleles.each do |allele|
+        trait = genetic[allele]
+        if !trait.nil?
+          trait.each do |stat, rule|
+            logger.debug "processing trait: #{stat.inspect} => #{rule.inspect}"
+            case rule
+            when :add_one_per_level
+              new_stat_value = add_per_level(stats[stat], stats[:level], 1)
+            when :add_10_per_level
+              new_stat_value = add_per_level(stats[stat], stats[:level], 10)
+            when :double
+              new_stat_value = double(stats[stat])
+            when :unable
+              new_stat_value = unable()
+            else
+              logger.warn 'Unknown genetic trait, cannot process: ' + rule.to_s
+            end
+            logger.debug "Stat trasformation for #{stat.inspect} from #{stats[stat].inspect} to #{new_stat_value.inspect}"
+            stats[stat] = new_stat_value
+          end
+        end
+      end
+
+    end
+    logger.debug "critter#build_stats returning: #{stats.inspect}"
+    return stats
   end
 
-  def birth
-    us = url_status
-    logger.debug us
-    if us
-      domain = URI.split(url)[2]
-      dna = parse_dna(domain)
-      build_stats(dna)
-      logger.debug "Critter #{name} built from #{domain}: #{dna}"
-    else
-      errors.add :url, " is a facade.  Only true URLs are domains for critters."
-      return false
+  def add_per_level(stat_value, level, increment)
+    if stat_value.nil?
+      return nil
     end
+    return (stat_value + (level * increment))
+  end
+
+  def double(stat_value)
+    if stat_value.nil?
+      return nil
+    end
+    return stat_value * 2
+  end
+
+  # TODO: does this work for all stat data types?
+  def unable()
+    return nil
   end
 
 end
