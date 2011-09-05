@@ -12,6 +12,7 @@ class Critter < ActiveRecord::Base
   before_create :birth
 
   BASE_STATS = {
+    :sex => 'M',
     :level => 1,
     :hp => 10,
     :dodge => 0.05,
@@ -38,6 +39,7 @@ class Critter < ActiveRecord::Base
   }
   LETTERS = ("a".."z")
   NUMBERS = (0..9)
+  SEXES = %w(M F)
   ALLELE_PAIRS = [
     [:d, :d],
     [:d, :r],
@@ -200,6 +202,7 @@ class Critter < ActiveRecord::Base
   # Supported traits :add_one_per_level, :add_10_per_level, :double, :unable
   def build_stats(dna)
     stats = BASE_STATS
+    stats[:sex] = SEXES[rand(2)]
     # TODO: change mass assignment so attr_accessible security can be turned back on
     # dna = { a => 'AA' } where a is chromo and A is allele
     dna.each do |chromo, alleles|
