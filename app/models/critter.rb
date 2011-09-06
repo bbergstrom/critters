@@ -50,12 +50,11 @@ class Critter < ActiveRecord::Base
   LETTERS = ("a".."z")
   NUMBERS = (0..9)
   SEXES = %w(M F)
-  # Possible allele combonations
+  # Possible allele combonations with dominance
   ALLELE_PAIRS = [
     [:d, :d],
     [:d, :r],
-    [:r, :d],
-    [:r, :r]
+    [:r, :d]
   ]
   # Genetics definition, by chromosome, then attribute name and trait symbol.
   GENETICS = {
