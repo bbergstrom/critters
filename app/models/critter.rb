@@ -11,12 +11,13 @@ class Critter < ActiveRecord::Base
   validates :user_id, :presence => true
   before_create :birth
 
+  # Stats to use at birth.
   BASE_STATS = {
     :sex => 'M',
     :level => 1,
     :hp => 10,
-    :dodge => 0.05,
-    :crit => 0.05,
+    :dodge => 1,
+    :crit => 1,
     :physical_damage => 2,
     :fire_damage => 1,
     :earth_damage => 1,
@@ -30,131 +31,141 @@ class Critter < ActiveRecord::Base
     :absorb_air => 1,
     :absorb_light => 1,
     :absorb_dark => 1,
-    :fire => false,
-    :earth => false,
-    :water => false,
-    :air => false,
-    :light => false,
-    :dark => false
+    :fire => true,
+    :earth => true,
+    :water => true,
+    :air => true,
+    :light => true,
+    :dark => true 
+  }
+  # Mapping of what attributes flag the elementals.
+  ELEMENTS = {
+    :fire => :fire_damage,
+    :earth => :earth_damage,
+    :water => :water_damage,
+    :air => :air_damage,
+    :light => :light_damage,
+    :dark => :dark_damage
   }
   LETTERS = ("a".."z")
   NUMBERS = (0..9)
   SEXES = %w(M F)
+  # Possible allele combonations
   ALLELE_PAIRS = [
     [:d, :d],
     [:d, :r],
     [:r, :d],
     [:r, :r]
   ]
-  # Genetics definition, by chromosome, allele, then trait symbol.
+  # Genetics definition, by chromosome, then attribute name and trait symbol.
   GENETICS = {
     'e' => {
-      :d => { :absorb_fire => :add_one_per_level }
+      :absorb_fire => :add_one_per_level
     },
     't' => {
-      :r => { :dodge => :add_one }
+      :dodge => :add_one
     },
     'a' => {
-      :d => { :absorb_earth => :add_one_per_level }
+      :absorb_earth => :add_one_per_level
     },
     'o' => {
-      :d => { :absorb_air => :add_one_per_level }
+      :absorb_air => :add_one_per_level
     },
     'i' => {
-      :d => { :absorb_water => :add_one_per_level }
+      :absorb_water => :add_one_per_level
     },
     'n' => {
-      :d => { :hp => :add_10_per_level }
+      :hp => :add_10_per_level
     },
     's' => {
-      :d => { :earth_damage => :double }
+      :earth_damage => :double
     },
     'r' => {
-      :d => { :water_damage => :add_one_per_level }
+      :water_damage => :add_one_per_level
     },
     'h' => {
-      :d => { :fire_damage => :double }
+      :fire_damage => :double
     },
     'l' => {
-      :d => { :air_damage => :unable }
+      :air_damage => :unable
     },
     'd' => {
-      :d => { :earth_damage => :add_one_per_level }
+      :earth_damage => :add_one_per_level
     },
     'c' => {
-      :r => { :crit => :add_one }
+      :crit => :add_one
     },
     'u' => {
-      :d => { :fire_damage => :unable }
+      :fire_damage => :unable
     },
     'm' => {
-      :d => { :absorb_fire => :unable }
+      :absorb_fire => :unable
     },
     'f' => {
-      :d => { :fire_damage => :add_one_per_level }
+      :fire_damage => :add_one_per_level
     },
     'p' => {
-      :d => { :physical_damage => :double }
+      :physical_damage => :double
     },
     'g' => {
-      :d => { :earth_damage => :unable }
+      :earth_damage => :unable
     },
     'w' => {
-      :d => { :air_damage => :double }
+      :air_damage => :double
     },
     'y' => {
-      :d => { :water_damage => :double }
+      :water_damage => :double
     },
     'b' => {
-      :d => { :air_damage => :add_one_per_level }
+      :air_damage => :add_one_per_level
     },
     'v' => {
-      :d => { :crit => :unable }
+      :crit => :unable
     },
     'k' => {
-      :d => { :absorb_earth => :unable }
+      :absorb_earth => :unable
     },
     'x' => {
-      :d => { :dodge => :unable }
+      :dodge => :unable
     },
     'j' => {
-      :d => { :water_damage => :unable }
+      :water_damage => :unable
     },
     'q' => {
-      :d => { :absorb_air => :unable }
+      :absorb_air => :unable
     },
     'z' => {
-      :d => { :absorb_water => :unable }
+      :absorb_water => :unable
     },
     0 => {
-      :d => { :light_damage => :add_one_per_level }
+      :light_damage => :add_one_per_level
     },
     1 => {
-      :d => { :light_damage => :unable }
+      :light_damage => :unable
     },
     2 => {
-      :d => { :absorb_light => :unable }
+      :absorb_light => :unable
     },
     3 => {
-      :d => { :light_damage => :double }
+      :light_damage => :double
     },
     4 => {
-      :d => { :absorb_light => :add_one_per_level }
+      :absorb_light => :add_one_per_level
     },
     5 => {
-      :d => { :dark_damage => :add_one_per_level }
+      :dark_damage => :add_one_per_level
     },
     6 => {
-      :d => { :dark_damage => :unable }
+      :dark_damage => :unable
     },
     7 => {
-      :d => { :absorb_dark => :unable }
+      :absorb_dark => :unable
     },
     8 => {
-      :d => { :dark_damage => :double }
+      :dark_damage => :double
     },
     9 => {
-      :d => { :absorb_dark => :add_one_per_level }
+      :absorb_dark => :add_one_per_level
     }
   }
 
@@ -178,6 +189,7 @@ class Critter < ActiveRecord::Base
     return (c.response_code == 200)
   end
 
+  # Parse URL for DNA, but limit by char length to avoid alphabet critters.
   def parse_dna(url)
     result = {}
     LETTERS.each do |l|
@@ -194,7 +206,6 @@ class Critter < ActiveRecord::Base
         result[n] = ALLELE_PAIRS[n]
       end
     end
-    logger.debug "DNA result #{result.inspect}"
     return result
   end
 
@@ -207,53 +218,69 @@ class Critter < ActiveRecord::Base
     # dna = { a => 'AA' } where a is chromo and A is allele
     dna.each do |chromo, alleles|
       logger.debug "Processing dna: #{chromo} = #{alleles.inspect}"
-      genetic = GENETICS[chromo]
-      logger.debug "Matching genetic: #{genetic.inspect}"
-      alleles.each do |allele|
-        trait = genetic[allele]
-        if !trait.nil?
-          trait.each do |stat, rule|
-            logger.debug "processing trait: #{stat.inspect} => #{rule.inspect}"
-            case rule
-            when :add_one_per_level
-              new_stat_value = add_per_level(stats[stat], stats[:level], 1)
-            when :add_10_per_level
-              new_stat_value = add_per_level(stats[stat], stats[:level], 10)
-            when :double
-              new_stat_value = double(stats[stat])
-            when :unable
-              new_stat_value = unable()
-            else
-              logger.warn 'Unknown genetic trait, cannot process: ' + rule.to_s
-            end
-            logger.debug "Stat trasformation for #{stat.inspect} from #{stats[stat].inspect} to #{new_stat_value.inspect}"
-            stats[stat] = new_stat_value
-          end
-        end
+      if (!alleles.include?(:d))
+        logger.debug 'No dominant gene found in this allele, move to next chromosome.'
+        next
       end
+      genetics = GENETICS[chromo]
+      logger.debug "Matching genetics: #{genetics.inspect}"
+      genetics.each do |att, rule|
+        logger.debug "Processing trait: #{att.inspect} => #{rule.inspect}"
+        case rule
+        when :add_one
+          new_stat_value = add(stats[att], 1)
+        when :add_one_per_level
+          new_stat_value = add_per_level(stats[att], stats[:level], 1)
+        when :add_10_per_level
+          new_stat_value = add_per_level(stats[att], stats[:level], 10)
+        when :double
+          new_stat_value = double(stats[att])
+        when :unable
+          new_stat_value = unable()
+        else
+          logger.warn 'Unknown genetic trait, cannot process: ' + rule.to_s
+        end
+        logger.debug "Stat trasformation for #{att.inspect} from #{stats[att].inspect} to #{new_stat_value.inspect}"
+        stats[att] = new_stat_value
+      end # genetics.each
+    end # dna.each
 
+    ELEMENTS.each do |ele_att, power_att|
+      if (stats[power_att] == 0)
+        stats[ele_att] = false
+      else
+        stats[ele_att] = true
+      end
+      logger.debug "Element #{ele_att.inspect} flagged #{stats[ele_att]}"
     end
+
     logger.debug "critter#build_stats returning: #{stats.inspect}"
     return stats
   end
 
+  def add(stat_value, increment)
+    if (stat_value == 0)
+      return 0
+    end
+    return (stat_value + increment)
+  end
+
   def add_per_level(stat_value, level, increment)
-    if stat_value.nil?
-      return nil
+    if (stat_value == 0)
+      return 0
     end
     return (stat_value + (level * increment))
   end
 
   def double(stat_value)
-    if stat_value.nil?
-      return nil
+    if (stat_value == 0)
+      return 0
     end
     return stat_value * 2
   end
 
-  # TODO: does this work for all stat data types?
   def unable()
-    return nil
+    return 0
   end
 
 end

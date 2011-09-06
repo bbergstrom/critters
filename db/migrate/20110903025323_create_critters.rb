@@ -5,8 +5,8 @@ class CreateCritters < ActiveRecord::Migration
       t.string :url
       t.integer :level
       t.integer :hp
-      t.decimal :dodge
-      t.decimal :crit
+      t.integer :dodge
+      t.integer :crit
       t.integer :physical_damage
       t.integer :fire_damage
       t.integer :earth_damage
