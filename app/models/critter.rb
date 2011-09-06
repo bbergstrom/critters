@@ -194,14 +194,14 @@ class Critter < ActiveRecord::Base
     LETTERS.each do |l|
       i = url.index(l)
       if url.include?(l) && !i.nil? && i < 18
-        r = rand(4)
+        r = rand(ALLELE_PAIRS.length)
         result[l] = ALLELE_PAIRS[r]
       end
     end
     NUMBERS.each do |n|
       i = url.index(n)
       if url.include?(n) && !i.nil? && i < 18
-        r = rand(4)
+        r = rand(ALLELE_PAIRS.length)
         result[n] = ALLELE_PAIRS[r]
       end
     end
