@@ -203,7 +203,7 @@ class Critter < ActiveRecord::Base
       i = url.index(n)
       if url.include?(n) && !i.nil? && i < 18
         r = rand(4)
-        result[n] = ALLELE_PAIRS[n]
+        result[n] = ALLELE_PAIRS[r]
       end
     end
     return result
