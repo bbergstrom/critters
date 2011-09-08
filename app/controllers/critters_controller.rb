@@ -14,7 +14,7 @@ class CrittersController < ApplicationController
   # GET /critters/1.xml
   def show
     @critter = Critter.find(params[:id])
-    @title = current_user.username + ' - ' + @critter.name
+    @title = @critter.user.username + ' - ' + @critter.name
 
     # show.html.erb
   end
