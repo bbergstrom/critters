@@ -75,6 +75,11 @@ div.field label {
 div.actions {
   padding:10px;
 }
+span.disability {
+  padding-left:5px;
+  color:maroon;
+  font-size:11px;
+}
 
 /* Critters */
 table.critters {

@@ -31,21 +31,20 @@ class Critter < ActiveRecord::Base
     :absorb_air => 1,
     :absorb_light => 1,
     :absorb_dark => 1,
-    :fire => true,
-    :earth => true,
-    :water => true,
-    :air => true,
-    :light => true,
-    :dark => true 
-  }
-  # Mapping of what attributes flag the elementals.
-  ELEMENTS = {
-    :fire => :fire_damage,
-    :earth => :earth_damage,
-    :water => :water_damage,
-    :air => :air_damage,
-    :light => :light_damage,
-    :dark => :dark_damage
+    :has_crit => true,
+    :has_dodge => true,
+    :has_fire_damage => true,
+    :has_earth_damage => true,
+    :has_water_damage => true,
+    :has_air_damage => true,
+    :has_light_damage => true,
+    :has_dark_damage => true,
+    :has_absorb_fire => true,
+    :has_absorb_earth => true,
+    :has_absorb_water => true,
+    :has_absorb_air => true,
+    :has_absorb_light => true,
+    :has_absorb_dark => true 
   }
   LETTERS = ("a".."z")
   NUMBERS = (0..9)
@@ -86,7 +85,7 @@ class Critter < ActiveRecord::Base
       :fire_damage => :double
     },
     'l' => {
-      :air_damage => :unable
+      :has_air_damage => :unable
     },
     'd' => {
       :earth_damage => :add_one_per_level
@@ -95,10 +94,10 @@ class Critter < ActiveRecord::Base
       :crit => :add_one
     },
     'u' => {
-      :fire_damage => :unable
+      :has_fire_damage => :unable
     },
     'm' => {
-      :absorb_fire => :unable
+      :has_absorb_fire => :unable
     },
     'f' => {
       :fire_damage => :add_one_per_level
@@ -107,7 +106,7 @@ class Critter < ActiveRecord::Base
       :physical_damage => :double
     },
     'g' => {
-      :earth_damage => :unable
+      :has_earth_damage => :unable
     },
     'w' => {
       :air_damage => :double
@@ -119,31 +118,31 @@ class Critter < ActiveRecord::Base
       :air_damage => :add_one_per_level
     },
     'v' => {
-      :crit => :unable
+      :has_crit => :unable
     },
     'k' => {
-      :absorb_earth => :unable
+      :has_absorb_earth => :unable
     },
     'x' => {
-      :dodge => :unable
+      :has_dodge => :unable
     },
     'j' => {
-      :water_damage => :unable
+      :has_water_damage => :unable
     },
     'q' => {
-      :absorb_air => :unable
+      :has_absorb_air => :unable
     },
     'z' => {
-      :absorb_water => :unable
+      :has_absorb_water => :unable
     },
     0 => {
       :light_damage => :add_one_per_level
     },
     1 => {
-      :light_damage => :unable
+      :has_light_damage => :unable
     },
     2 => {
-      :absorb_light => :unable
+      :has_absorb_light => :unable
     },
     3 => {
       :light_damage => :double
@@ -155,10 +154,10 @@ class Critter < ActiveRecord::Base
       :dark_damage => :add_one_per_level
     },
     6 => {
-      :dark_damage => :unable
+      :has_dark_damage => :unable
     },
     7 => {
-      :absorb_dark => :unable
+      :has_absorb_dark => :unable
     },
     8 => {
       :dark_damage => :double
@@ -244,15 +243,6 @@ class Critter < ActiveRecord::Base
       end # genetics.each
     end # dna.each
 
-    ELEMENTS.each do |ele_att, power_att|
-      if (stats[power_att] == 0)
-        stats[ele_att] = false
-      else
-        stats[ele_att] = true
-      end
-      logger.debug "Element #{ele_att.inspect} flagged #{stats[ele_att]}"
-    end
-
     logger.debug "critter#build_stats returning: #{stats.inspect}"
     return stats
   end
@@ -279,7 +269,7 @@ class Critter < ActiveRecord::Base
   end
 
   def unable()
-    return 0
+    return false
   end
 
 end

@@ -2,11 +2,11 @@
 
 one:
   name: MyString
-  url: MyString
+  url: http://www.cnn.com 
   level: 1
   hp: 1
-  dodge: 9.99
-  crit: 9.99
+  dodge: 1
+  crit: 1
   physical_damage: 1
   fire_damage: 1
   earth_damage: 1
@@ -20,20 +20,29 @@ one:
   absorb_air: 1
   absorb_light: 1
   absorb_dark: 1
-  fire: false
-  earth: false
-  water: false
-  air: false
-  light: false
-  dark: false
+  has_crit: true
+  has_dodge: true
+  has_fire_damage: true
+  has_earth_damage: true
+  has_water_damage: true
+  has_air_damage: true
+  has_light_damage: true
+  has_dark_damage: true
+  has_absorb_fire: true
+  has_absorb_earth: true
+  has_absorb_water: true
+  has_absorb_air: true
+  has_absorb_light: true
+  has_absorb_dark: true
+  user: foo
 
 two:
   name: MyString
-  url: MyString
+  url: http://www.yahoo.com
   level: 1
   hp: 1
-  dodge: 9.99
-  crit: 9.99
+  dodge: 1
+  crit: 1
   physical_damage: 1
   fire_damage: 1
   earth_damage: 1
@@ -47,9 +56,18 @@ two:
   absorb_air: 1
   absorb_light: 1
   absorb_dark: 1
-  fire: false
-  earth: false
-  water: false
-  air: false
-  light: false
-  dark: false
+  has_crit: true
+  has_dodge: true
+  has_fire_damage: true
+  has_earth_damage: true
+  has_water_damage: true
+  has_air_damage: true
+  has_light_damage: true
+  has_dark_damage: true
+  has_absorb_fire: true
+  has_absorb_earth: true
+  has_absorb_water: true
+  has_absorb_air: true
+  has_absorb_light: true
+  has_absorb_dark: true
+  user: bar

@@ -3,6 +3,8 @@ require 'test_helper'
 class CrittersControllerTest < ActionController::TestCase
   setup do
     @critter = critters(:one)
+    # And lets fake a user session for now.
+    session[:user_id] = User.first
   end
 
   test "should get index" do

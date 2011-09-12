@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110903054738) do
+ActiveRecord::Schema.define(:version => 20110912025528) do
 
   create_table "critters", :force => true do |t|
     t.string   "name"
@@ -32,16 +32,24 @@ ActiveRecord::Schema.define(:version => 20110903054738) do
     t.integer  "absorb_air"
     t.integer  "absorb_light"
     t.integer  "absorb_dark"
-    t.boolean  "fire"
-    t.boolean  "earth"
-    t.boolean  "water"
-    t.boolean  "air"
-    t.boolean  "light"
-    t.boolean  "dark"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "sex"
+    t.boolean  "has_fire_damage"
+    t.boolean  "has_earth_damage"
+    t.boolean  "has_water_damage"
+    t.boolean  "has_air_damage"
+    t.boolean  "has_light_damage"
+    t.boolean  "has_dark_damage"
+    t.boolean  "has_absorb_fire"
+    t.boolean  "has_absorb_earth"
+    t.boolean  "has_absorb_water"
+    t.boolean  "has_absorb_air"
+    t.boolean  "has_absorb_light"
+    t.boolean  "has_absorb_dark"
+    t.boolean  "has_crit"
+    t.boolean  "has_dodge"
   end
 
   create_table "users", :force => true do |t|
