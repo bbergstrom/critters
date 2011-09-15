@@ -18,19 +18,19 @@ class Critter < ActiveRecord::Base
     :hp => 10,
     :dodge => 1,
     :crit => 1,
-    :physical_damage => 2,
-    :fire_damage => 1,
-    :earth_damage => 1,
-    :water_damage => 1,
-    :air_damage => 1,
-    :light_damage => 1,
-    :dark_damage => 1,
-    :absorb_fire => 1,
-    :absorb_earth => 1,
-    :absorb_water => 1,
-    :absorb_air => 1,
-    :absorb_light => 1,
-    :absorb_dark => 1,
+    :physical_damage => 1,
+    :fire_damage => 0,
+    :earth_damage => 0,
+    :water_damage => 0,
+    :air_damage => 0,
+    :light_damage => 0,
+    :dark_damage => 0,
+    :absorb_fire => 0,
+    :absorb_earth => 0,
+    :absorb_water => 0,
+    :absorb_air => 0,
+    :absorb_light => 0,
+    :absorb_dark => 0,
     :has_crit => true,
     :has_dodge => true,
     :has_fire_damage => true,
@@ -248,23 +248,14 @@ class Critter < ActiveRecord::Base
   end
 
   def add(stat_value, increment)
-    if (stat_value == 0)
-      return 0
-    end
     return (stat_value + increment)
   end
 
   def add_per_level(stat_value, level, increment)
-    if (stat_value == 0)
-      return 0
-    end
     return (stat_value + (level * increment))
   end
 
   def double(stat_value)
-    if (stat_value == 0)
-      return 0
-    end
     return stat_value * 2
   end
 
