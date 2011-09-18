@@ -1,11 +1,12 @@
 require 'uri'
 require 'curb'
+require 'public_suffix_service'
 
 class Critter < ActiveRecord::Base
   belongs_to :user
   #attr_accessible :name, :url
-  attr_accessor :dna
   validates :name, :presence => true
+  # TODO: Update format validation to use public_suffix_service
   validates :url, :presence => true,
                   :format => { :with => URI::regexp(%w(http https)) }
   validates :user_id, :presence => true
@@ -170,8 +171,8 @@ class Critter < ActiveRecord::Base
   def birth
     us = url_status
     if us
-      domain = URI.split(url)[2]
-      @dna = parse_dna(domain)
+      domain = PublicSuffixService.parse(url).domain
+      dna = parse_dna(domain)
       self.attributes = build_stats(dna)
       logger.debug "Critter #{name} built from #{domain}: #{dna.inspect}"
     else

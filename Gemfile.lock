@@ -47,6 +47,7 @@ GEM
     mocha (0.9.12)
     nifty-generators (0.4.6)
     polyglot (0.3.2)
+    public_suffix_service (0.9.0)
     rack (1.2.3)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
@@ -84,5 +85,6 @@ DEPENDENCIES
   jquery-rails
   mocha
   nifty-generators
+  public_suffix_service
   rails (= 3.0.3)
   sqlite3-ruby
