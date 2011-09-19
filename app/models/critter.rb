@@ -211,7 +211,8 @@ class Critter < ActiveRecord::Base
   # Run through DNA and apply symbol traits.
   # Supported traits :add_one_per_level, :add_10_per_level, :double, :unable
   def build_stats(dna)
-    stats = BASE_STATS
+    stats = {}
+    stats.merge!(BASE_STATS)
     stats[:sex] = SEXES[rand(2)]
     # TODO: change mass assignment so attr_accessible security can be turned back on
     # dna = { a => 'AA' } where a is chromo and A is allele
