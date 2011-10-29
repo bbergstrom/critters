@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      redirect_to root_url, :notice => "Your profile has been updated."
+      redirect_to @user, :notice => "Your profile has been updated."
     else
       render :action => 'edit'
     end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @critters = @user.critters
-    @title = @user.username
+    @title = 'Player: ' + @user.username
   end
 
 end

@@ -3,7 +3,7 @@
   <caption>The Top 10 Critters</caption>
   <thead>
     <tr>
-      <th>User</th>
+      <th>Player</th>
       <th>Name</th>
       <th>Url</th>
       <th>Sex</th>
@@ -13,7 +13,7 @@
 
 <% @critters.each do |critter| %>
   <tr>
-    <td><%= critter.user.username %></td>
+    <td><%= link_to critter.user.username, critter.user %></td>
     <td><%= link_to critter.name, critter %></td>
     <td><%= critter.url %></td>
     <td><%= critter.sex %></td>

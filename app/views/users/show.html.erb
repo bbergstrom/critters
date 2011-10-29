@@ -1,1 +1,9 @@
-#TODO
+<% if logged_in? %>
+  <p><%= link_to "Edit profile", edit_current_user_path, :class => 'button right' %></p>
+<% end %>
+<%= gravatar_for @user, { :size => 100 } %>
+<h1><%= @user.username %></h1>
+<p>E-mail: <%= @user.email %></p>
+<p>Player since: <%= @user.created_at.to_s(:long_ordinal) %></p>
+<p>Critter count: <%= @critters.count %></p>
+

@@ -12,6 +12,7 @@ gem 'nifty-generators', :group => :development
 # Curl gem, requires libcurl-devel on fedora
 gem 'curb'
 gem 'public_suffix_service'
+gem 'gravatar_image_tag'
 
 # Use unicorn as the web server
 # gem 'unicorn'
