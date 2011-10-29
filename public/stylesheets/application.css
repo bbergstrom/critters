@@ -1,23 +1,42 @@
 @import url("flash.css");
 
 html {
-  background-color:#EEE;
+  background-color:#CCC;
+  background-image: linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
+  background-image: -o-linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
+  background-image: -moz-linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
+  background-image: -webkit-linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
+  background-image: -ms-linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.13, #1D3838),
+      color-stop(0.57, #385454),
+      color-stop(0.79, #547676)
+  );
 }
+
 body {
   width: 980px;
   margin:0 auto;
   background-color:#FFF;
   padding:10px;
 }
+
 #header {
   margin-bottom:20px;
 }
 #header h1 {
   font-size:18px;
   margin:10px;
+  text-shadow:5px 5px 10px #CCC;
 }
+
 #nav {
   background-color:#CCC;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 #nav a,
 #nav a:active,
@@ -39,6 +58,9 @@ body {
 }
 #nav ul li a:hover {
   background-color: #DDD;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+
 }
 h2.crumb {
   font-size:14;
@@ -81,6 +103,31 @@ span.disability {
   font-size:11px;
 }
 
+/* Users */
+ul.users li {
+  list-style:none;
+  float:left;
+  width:200px;
+  height:70px;
+  margin:20px;
+  line-height:60px;
+}
+ul.users li a {
+  display:block;
+  padding:10px;
+}
+ul.users li a:hover {
+  background-color:#EEE;
+}
+ul.users li span {
+  font-size:24px;
+  font-weight:bold;
+}
+ul.users li img,
+ul.users li span {
+  vertical-align:middle;
+}
+
 /* Critters */
 table.critters {
   width:100%;
@@ -89,8 +136,14 @@ table.critters caption {
   font-size:18px;;
 }
 table.critters th {
-  padding:0 10px;
+  padding:2px 10px;
+  background-color:#eee;
+  border:2px solid #FFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+
 }
 table.critters td {
   padding:10px;
+  border:1px dotted #efefef;
 }

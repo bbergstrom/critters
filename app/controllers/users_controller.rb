@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    # TODO: Fix validation on update.
     @user = current_user
     if @user.update_attributes(params[:user])
       redirect_to @user, :notice => "Your profile has been updated."
@@ -32,6 +33,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @critters = @user.critters
     @title = 'Player: ' + @user.username
+  end
+
+  def index
+    @users = User.all
+    @title = 'Players'
   end
 
 end

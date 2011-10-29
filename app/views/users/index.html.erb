@@ -1,0 +1,8 @@
+<h1>Players</h1>
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <%= link_to gravatar_for(user) + content_tag(:span, user.username), user %>
+    </li>
+  <% end %>
+</ul>
