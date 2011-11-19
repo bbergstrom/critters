@@ -1,6 +1,7 @@
 @import url("flash.css");
 
 html {
+  height: 100%;
   background-color:#CCC;
   background-image: linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
   background-image: -o-linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
