@@ -2,6 +2,7 @@
   <p><%= link_to "Edit profile", edit_current_user_path, :class => 'button right' %></p>
 <% end %>
 <%= gravatar_for @user, { :size => 100 } %>
+<small>Set your <a href="http://gravatar.com" target="_blank">Gravatar</a></small>
 <h1><%= @user.username %></h1>
 <p>E-mail: <%= @user.email %></p>
 <p>Player since: <%= @user.created_at.to_s(:long_ordinal) %></p>

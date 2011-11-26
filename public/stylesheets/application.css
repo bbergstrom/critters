@@ -63,9 +63,9 @@ body {
   border-radius: 10px;
 
 }
-h2.crumb {
+.crumb {
   font-size:14;
-  color:#CCC;
+  color:#AAA;
   margin-bottom:10px;
 }
 #content {
