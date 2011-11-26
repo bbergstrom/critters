@@ -1,12 +1,12 @@
 <%= form_for(@critter) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <% if %w( new create ).include? params[:action] %>
     <div class="field">
-      <%= f.label :url %><br />
+      <%= f.label :url %>
       <%= f.text_field :url %>
     </div>
   <% end %>

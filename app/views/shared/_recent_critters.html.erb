@@ -1,0 +1,22 @@
+<% if(!@recent_critters.nil?) %>
+<table class="clearfix critters recent_critters">
+  <caption>Recent 5 Critters</caption>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Level</th>
+    </tr>
+  </thead>
+
+<% @recent_critters.each do |critter| %>
+  <tr>
+    <td><%= link_to critter.user.username, critter.user %></td>
+    <td><%= link_to critter.name, critter %></td>
+    <td><%= critter.url %></td>
+    <td><%= critter.created_at.to_s(:short) %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>

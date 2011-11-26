@@ -143,17 +143,17 @@ body, select, input, textarea {
   color: #444;
   /* Set your base font here, to apply evenly */
   font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
 h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 h1 {font-size:2em;}
 h2 {font-size:1.8em;}
-h3 {font-size:1.8em;}
-h4 {font-size:1.6em;}
-h5 {font-size:1.4em;}
-h6 {font-size:1.2em;}
+h3 {font-size:1.6em;}
+h4 {font-size:1.4em;}
+h5 {font-size:1.2em;}
+h6 {font-size:1em;}
 
 /* These selection declarations have to be separate
    No text-shadow: twitter.com/miketaylr/status/12228805301

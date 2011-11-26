@@ -1,0 +1,22 @@
+<% if(!@top_critters.nil?) %>
+<table class="clearfix critters top_critters">
+  <caption>Top 5 Critters</caption>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Level</th>
+    </tr>
+  </thead>
+
+<% @top_critters.each do |critter| %>
+  <tr>
+    <td><%= link_to critter.user.username, critter.user %></td>
+    <td><%= link_to critter.name, critter %></td>
+    <td><%= critter.url %></td>
+    <td><%= critter.level %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>

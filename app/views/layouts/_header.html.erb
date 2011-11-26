@@ -2,6 +2,12 @@
   <hgroup>
     <h1>Critters</h1>
   </hgroup>
+
+  <% if logged_in? %>
+    <div id="current_user_status">
+        Logged in as <%= link_to current_user.username, current_user %>, player since <%= current_user.created_at.to_s(:month_and_year) %>.
+    </div>
+  <% end %>
 	
   <nav id="nav" class="clearfix">
     <ul>

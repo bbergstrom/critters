@@ -38,11 +38,15 @@
   <%= render 'layouts/header' %>
 
   <section id="content" class="clearfix <%= controller_css_class %>">
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, :class => "flash #{key}") %>
+    <% unless flash.empty? %>
+      <div id="flash">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, :class => "flash #{key}") %>
+        <% end %>
+      </div>
     <% end %>
 
-    <div class="crumb">==== <%= @title %> ====</div>
+    <h2 class="content-title"><%= @title %></h2>
 
     <%= yield %> <!-- end of #container -->
   </section>
