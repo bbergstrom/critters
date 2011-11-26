@@ -1,14 +1,13 @@
 require 'uri'
 require 'curb'
-require 'public_suffix_service'
 
 class Critter < ActiveRecord::Base
   belongs_to :user
   #attr_accessible :name, :url
   validates :name, :presence => true
-  # TODO: Update format validation to use public_suffix_service
   validates :url, :presence => true,
-                  :format => { :with => URI::regexp(%w(http https)) }
+                  :on => :create,
+                  :domain_name => true
   validates :user_id, :presence => true
   before_create :birth
 
@@ -176,7 +175,7 @@ class Critter < ActiveRecord::Base
       self.attributes = build_stats(dna)
       logger.debug "Critter #{name} built from #{domain}: #{dna.inspect}"
     else
-      errors.add :url, " is a facade.  Only true URLs are domains for critters."
+      errors.add :url, " is a facade.  Only non-redirecting domains are habitats for critters."
       return false
     end
   end
