@@ -1,5 +1,6 @@
 require 'uri'
 require 'curb'
+require 'public_suffix_service'
 
 class Critter < ActiveRecord::Base
   belongs_to :user
