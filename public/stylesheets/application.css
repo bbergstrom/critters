@@ -2,19 +2,19 @@
 
 html {
   height: 100%;
-  background-color:#CCC;
-  background-image: linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
-  background-image: -o-linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
-  background-image: -moz-linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
-  background-image: -webkit-linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
-  background-image: -ms-linear-gradient(bottom, #1D3838 13%, #385454 57%, #547676 79%);
+  background-color:#122;
+  background-image: linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
+  background-image: -o-linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
+  background-image: -moz-linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
+  background-image: -webkit-linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
+  background-image: -ms-linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
   background-image: -webkit-gradient(
       linear,
       left bottom,
       left top,
-      color-stop(0.13, #1D3838),
-      color-stop(0.57, #385454),
-      color-stop(0.79, #547676)
+      color-stop(0.13, #455),
+      color-stop(0.57, #344),
+      color-stop(0.79, #122)
   );
 }
 
