@@ -2,19 +2,19 @@
 
 html {
   height: 100%;
-  background-color:#122;
-  background-image: linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
-  background-image: -o-linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
-  background-image: -moz-linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
-  background-image: -webkit-linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
-  background-image: -ms-linear-gradient(bottom, #455 13%, #344 57%, #122 79%);
+  background-color:#112;
+  background-image: linear-gradient(bottom, #445 13%, #334 57%, #112 79%);
+  background-image: -o-linear-gradient(bottom, #445 13%, #334 57%, #112 79%);
+  background-image: -moz-linear-gradient(bottom, #445 13%, #334 57%, #112 79%);
+  background-image: -webkit-linear-gradient(bottom, #445 13%, #334 57%, #112 79%);
+  background-image: -ms-linear-gradient(bottom, #445 13%, #334 57%, #112 79%);
   background-image: -webkit-gradient(
       linear,
       left bottom,
       left top,
-      color-stop(0.13, #455),
-      color-stop(0.57, #344),
-      color-stop(0.79, #122)
+      color-stop(0.13, #445),
+      color-stop(0.57, #334),
+      color-stop(0.79, #112)
   );
 }
 
@@ -42,7 +42,7 @@ body {
 
 #nav {
   clear:both;
-  background-color:#CCC;
+  background-color:#DDD;
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
@@ -148,16 +148,16 @@ table.critters caption {
   font-size: 1.4em;
 }
 table.critters th {
-  padding:2px 10px;
-  background-color:#eee;
-  border:2px solid #FFF;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  padding:3px 10px;
+  background-color:#EFEFEF;
+  -moz-border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
 
 }
 table.critters td {
   padding:10px;
-  border:1px dotted #efefef;
+  border:1px dotted #DDD;
+  border-top:none;
 }
 
 /* Top and recent critters */
