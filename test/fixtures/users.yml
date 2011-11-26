@@ -10,3 +10,17 @@ bar:
   email: bar@example.com
   password_hash: 3488f5f7efecab14b91eb96169e5e1ee518a569f
   password_salt: bef65e058905c379436d80d1a32e7374b139e7b0
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer         not null, primary key
+#  username      :string(255)
+#  email         :string(255)
+#  password_hash :string(255)
+#  password_salt :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

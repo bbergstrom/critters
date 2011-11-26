@@ -74,3 +74,32 @@ Critters::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
+#== Route Map
+# Generated on 25 Nov 2011 23:03
+#
+#                   POST   /critters(.:format)          {:action=>"create", :controller=>"critters"}
+#       new_critter GET    /critters/new(.:format)      {:action=>"new", :controller=>"critters"}
+#      edit_critter GET    /critters/:id/edit(.:format) {:action=>"edit", :controller=>"critters"}
+#           critter GET    /critters/:id(.:format)      {:action=>"show", :controller=>"critters"}
+#                   PUT    /critters/:id(.:format)      {:action=>"update", :controller=>"critters"}
+#                   DELETE /critters/:id(.:format)      {:action=>"destroy", :controller=>"critters"}
+# edit_current_user        /user/edit(.:format)         {:action=>"edit", :controller=>"users"}
+#            signup        /signup(.:format)            {:action=>"new", :controller=>"users"}
+#            logout        /logout(.:format)            {:action=>"destroy", :controller=>"sessions"}
+#             login        /login(.:format)             {:action=>"new", :controller=>"sessions"}
+#          sessions GET    /sessions(.:format)          {:action=>"index", :controller=>"sessions"}
+#                   POST   /sessions(.:format)          {:action=>"create", :controller=>"sessions"}
+#       new_session GET    /sessions/new(.:format)      {:action=>"new", :controller=>"sessions"}
+#      edit_session GET    /sessions/:id/edit(.:format) {:action=>"edit", :controller=>"sessions"}
+#           session GET    /sessions/:id(.:format)      {:action=>"show", :controller=>"sessions"}
+#                   PUT    /sessions/:id(.:format)      {:action=>"update", :controller=>"sessions"}
+#                   DELETE /sessions/:id(.:format)      {:action=>"destroy", :controller=>"sessions"}
+#             users GET    /users(.:format)             {:action=>"index", :controller=>"users"}
+#                   POST   /users(.:format)             {:action=>"create", :controller=>"users"}
+#          new_user GET    /users/new(.:format)         {:action=>"new", :controller=>"users"}
+#         edit_user GET    /users/:id/edit(.:format)    {:action=>"edit", :controller=>"users"}
+#              user GET    /users/:id(.:format)         {:action=>"show", :controller=>"users"}
+#                   PUT    /users/:id(.:format)         {:action=>"update", :controller=>"users"}
+#                   DELETE /users/:id(.:format)         {:action=>"destroy", :controller=>"users"}
+#             about        /about(.:format)             {:action=>"about", :controller=>"pages"}
+#              root        /(.:format)                  {:action=>"home", :controller=>"pages"}

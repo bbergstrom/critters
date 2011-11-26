@@ -39,3 +39,7 @@ gem 'gravatar_image_tag'
 # end
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "mocha", :group => :test
+
+group :development do
+  gem 'annotate'
+end
