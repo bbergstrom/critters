@@ -68,7 +68,7 @@ body p {
   text-decoration:none;
 }
 #nav ul li a:hover {
-  background-color: #DDD;
+  background-color: #EFEFEF;
   -moz-border-radius: 10px;
   border-radius: 10px;
 
