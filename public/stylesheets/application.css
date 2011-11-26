@@ -24,6 +24,9 @@ body {
   background-color:#FFF;
   padding:10px;
 }
+body p {
+  line-height: 1.4em;
+}
 
 #header {
   margin-bottom:20px;
@@ -93,6 +96,9 @@ body {
 }
 .left {
   float:left;
+}
+.button {
+  margin-bottom: 10px;
 }
 
 /* Forms */
