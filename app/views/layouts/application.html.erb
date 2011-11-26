@@ -12,7 +12,7 @@
        Remove this if you use the .htaccess -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title><%= @title || 'Untitled' %> | Critters</title>
+  <title><%= @title || 'Home' %> | Critters</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -46,7 +46,9 @@
       </div>
     <% end %>
 
-    <h2 class="content-title"><%= @title %></h2>
+    <% unless @title.nil? %>
+      <h2 class="content-title"><%= @title %></h2>
+    <% end %>
 
     <%= yield %> <!-- end of #container -->
   </section>
