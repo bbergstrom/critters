@@ -1,121 +1,159 @@
-<p>
-  <b>Player:</b>
-  <%= link_to @critter.user.username, @critter.user %>
-</p>
+<div class="critter_details">
+  <table class="stats">
+    <tbody>
+    <tr>
+      <td>Owner:</td>
+      <td><%= link_to @critter.user.username, @critter.user %></td>
+    </tr>
 
-<p>
-  <b>Name:</b>
-  <%= @critter.name %>
-</p>
+    <tr>
+      <td>Name:</td>
+      <td><%= @critter.name %></td>
+    </tr>
 
-<p>
-  <b>Url:</b>
-  <%= @critter.url %>
-</p>
+    <tr>
+      <td>Url:</td>
+      <td><%= @critter.url %></td>
+    </tr>
 
-<p>
-  <b>Sex:</b>
-  <%= @critter.sex %>
-</p>
+    <tr>
+      <td>Sex:</td>
+      <td><%= @critter.sex %></td>
+    </tr>
 
-<p>
-  <b>Level:</b>
-  <%= @critter.level %>
-</p>
+    <tr>
+      <td>Level:</td>
+      <td><%= @critter.level %></td>
+    </tr>
 
-<p>
-  <b>Hp:</b>
-  <%= @critter.hp %>
-</p>
+    <tr>
+      <td>Hp:</td>
+      <td><%= @critter.hp %></td>
+    </tr>
 
-<p>
-  <b>Dodge:</b>
-  <%= @critter.dodge %>
-  <%= has_disability(@critter.has_dodge) %>
-</p>
+    <tr>
+      <td>Dodge:</td>
+      <td>
+        <%= @critter.dodge %>
+        <%= has_disability(@critter.has_dodge) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Crit:</b>
-  <%= @critter.crit %>
-  <%= has_disability(@critter.has_crit) %>
-</p>
+    <tr>
+      <td>Crit:</td>
+      <td>
+        <%= @critter.crit %>
+        <%= has_disability(@critter.has_crit) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Physical damage:</b>
-  <%= @critter.physical_damage %>
-</p>
+    <tr>
+      <td>Physical damage:</td>
+      <td><%= @critter.physical_damage %></td>
+    </tr>
+  </tbody>
+  </table>
+  <table class="element_stats">
+    <tbody>
+    <tr>
+      <td>Fire damage:</td>
+      <td>
+        <%= @critter.fire_damage %>
+        <%= has_disability(@critter.has_fire_damage) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Fire damage:</b>
-  <%= @critter.fire_damage %>
-  <%= has_disability(@critter.has_fire_damage) %>
-</p>
+    <tr>
+      <td>Earth damage:</td>
+      <td>
+        <%= @critter.earth_damage %>
+        <%= has_disability(@critter.has_earth_damage) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Earth damage:</b>
-  <%= @critter.earth_damage %>
-  <%= has_disability(@critter.has_earth_damage) %>
-</p>
+    <tr>
+      <td>Water damage:</td>
+      <td>
+        <%= @critter.water_damage %>
+        <%= has_disability(@critter.has_water_damage) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Water damage:</b>
-  <%= @critter.water_damage %>
-  <%= has_disability(@critter.has_water_damage) %>
-</p>
+    <tr>
+      <td>Air damage:</td>
+      <td>
+        <%= @critter.air_damage %>
+        <%= has_disability(@critter.has_air_damage) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Air damage:</b>
-  <%= @critter.air_damage %>
-  <%= has_disability(@critter.has_air_damage) %>
-</p>
+    <tr>
+      <td>Light damage:</td>
+      <td>
+        <%= @critter.light_damage %>
+        <%= has_disability(@critter.has_light_damage) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Light damage:</b>
-  <%= @critter.light_damage %>
-  <%= has_disability(@critter.has_light_damage) %>
-</p>
+    <tr>
+      <td>Dark damage:</td>
+      <td>
+        <%= @critter.dark_damage %>
+        <%= has_disability(@critter.has_dark_damage) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Dark damage:</b>
-  <%= @critter.dark_damage %>
-  <%= has_disability(@critter.has_dark_damage) %>
-</p>
+    <tr>
+      <td>Absorb fire:</td>
+      <td>
+        <%= @critter.absorb_fire %>
+        <%= has_disability(@critter.has_absorb_fire) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Absorb fire:</b>
-  <%= @critter.absorb_fire %>
-  <%= has_disability(@critter.has_absorb_fire) %>
-</p>
+    <tr>
+      <td>Absorb earth:</td>
+      <td>
+        <%= @critter.absorb_earth %>
+        <%= has_disability(@critter.has_absorb_earth) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Absorb earth:</b>
-  <%= @critter.absorb_earth %>
-  <%= has_disability(@critter.has_absorb_earth) %>
-</p>
+    <tr>
+      <td>Absorb water:</td>
+      <td>
+        <%= @critter.absorb_water %>
+        <%= has_disability(@critter.has_absorb_water) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Absorb water:</b>
-  <%= @critter.absorb_water %>
-  <%= has_disability(@critter.has_absorb_water) %>
-</p>
+    <tr>
+      <td>Absorb air:</td>
+      <td>
+        <%= @critter.absorb_air %>
+        <%= has_disability(@critter.has_absorb_air) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Absorb air:</b>
-  <%= @critter.absorb_air %>
-  <%= has_disability(@critter.has_absorb_air) %>
-</p>
+    <tr>
+      <td>Absorb light:</td>
+      <td>
+        <%= @critter.absorb_light %>
+        <%= has_disability(@critter.has_absorb_light) %>
+      </td>
+    </tr>
 
-<p>
-  <b>Absorb light:</b>
-  <%= @critter.absorb_light %>
-  <%= has_disability(@critter.has_absorb_light) %>
-</p>
-
-<p>
-  <b>Absorb dark:</b>
-  <%= @critter.absorb_dark %>
-  <%= has_disability(@critter.has_absorb_dark) %>
-</p>
-
-<%= link_to 'Edit', edit_critter_path(@critter) %> |
-<%= link_to 'Back', critters_path %>
+    <tr>
+      <td>Absorb dark:</td>
+      <td>
+        <%= @critter.absorb_dark %>
+        <%= has_disability(@critter.has_absorb_dark) %>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+<div class="actions">
+  <%= link_to 'Edit', edit_critter_path(@critter) %> |
+  <%= link_to 'Back', critters_path %>
+</div>

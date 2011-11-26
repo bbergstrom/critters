@@ -112,7 +112,7 @@ div.actions {
 span.disability {
   padding-left:5px;
   color:maroon;
-  font-size:11px;
+  font-size: .8em;
 }
 
 /* Users */
@@ -132,7 +132,7 @@ ul.users li a:hover {
   background-color:#EEE;
 }
 ul.users li span {
-  font-size:24px;
+  font-size: 1.8em;
   font-weight:bold;
 }
 ul.users li img,
@@ -145,7 +145,7 @@ table.critters {
   width:100%;
 }
 table.critters caption {
-  font-size:18px;;
+  font-size: 1.4em;
 }
 table.critters th {
   padding:2px 10px;
@@ -166,4 +166,22 @@ table.recent_critters {
   width:430px;
   float:left;
   margin:20px;
+}
+
+/* Critter Detail */
+.critter_details {
+  font-size: 1.2em;
+}
+.critter_details table tr td {
+  padding: 5px;
+}
+.critter_details .stats,
+.critter_details .element_stats {
+  width: 400px;
+}
+.critter_details .stats {
+  float: left;
+}
+.critter_details .element_stats {
+  margin-left:420px;
 }
