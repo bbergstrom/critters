@@ -65,11 +65,16 @@ body p {
   font-size: 1.2em;
   text-decoration:none;
 }
+#nav ul li a.current-page,
 #nav ul li a:hover {
-  background-color: #EFEFEF;
   -moz-border-radius: 10px;
   border-radius: 10px;
-
+}
+#nav ul li a.current-page {
+  background-color: #EEE;
+}
+#nav ul li a:hover {
+  background-color: #FE6;
 }
 .content-title {
   color:#444;

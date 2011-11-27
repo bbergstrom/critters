@@ -14,15 +14,15 @@
 	
   <nav id="nav" class="clearfix">
     <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "About", about_path %></li>
+      <li><%= link_to "Home", root_path, :class => current_page_class(root_path) %></li>
+      <li><%= link_to "About", about_path, :class => current_page_class(about_path)  %></li>
       <% if logged_in? %>
-        <li><%= link_to "Players", users_path %></li>
-        <li><%= link_to "Critters", critters_path %> </li>
-        <li><%= link_to "Log out", logout_path %></li>
+        <li><%= link_to "Players", users_path, :class => current_page_class(users_path) %></li>
+        <li><%= link_to "Critters", critters_path, :class => current_page_class(critters_path) %> </li>
+        <li><%= link_to "Log out", logout_path, :class => current_page_class(logout_path) %></li>
       <% else %>
-        <li><%= link_to "Sign up", signup_path %></li>
-        <li><%= link_to "Log in", login_path %></li>
+        <li><%= link_to "Sign up", signup_path, :class => current_page_class(signup_path) %></li>
+        <li><%= link_to "Log in", login_path, :class => current_page_class(login_path) %></li>
       <% end %>      
     </ul>
   </nav>
