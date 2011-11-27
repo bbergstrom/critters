@@ -5,7 +5,10 @@
 
   <% if logged_in? %>
     <div id="current_user_status">
-        Logged in as <%= link_to current_user.username, current_user %>, player since <%= current_user.created_at.to_s(:month_and_year) %>.
+      Logged in as 
+      <%= link_to current_user.username, current_user %>
+      , master of 
+      <%= pluralize current_user.critters.count, 'critter' %>.
     </div>
   <% end %>
 	
