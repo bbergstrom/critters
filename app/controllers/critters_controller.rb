@@ -21,7 +21,7 @@ class CrittersController < ApplicationController
 
   # GET /critters/new
   def new
-    @critter = Critter.new(:url => 'http://')
+    @critter = Critter.new
     @title = 'Hunting for a Critter'
 
     # new.html.erb

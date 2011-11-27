@@ -173,7 +173,7 @@ class Critter < ActiveRecord::Base
   def birth
     us = url_status
     if us
-      self.domain = PublicSuffixService.parse(url).domain
+      self.domain = PublicSuffixService.parse(url.sub(/(http|https):\/\//, '')).domain
       self.dna = parse_dna(domain)
       self.attributes = build_stats(dna)
       logger.debug "Critter #{name} built from #{domain}: #{dna.inspect}"
