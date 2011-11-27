@@ -188,7 +188,7 @@ table.stats td a {
 /* Top and recent critters */
 table.top_critters,
 table.recent_critters {
-  width:430px;
+  width:420px;
   float:left;
   margin:20px;
 }
