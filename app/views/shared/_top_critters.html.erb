@@ -5,8 +5,9 @@
     <tr>
       <th>Player</th>
       <th>Name</th>
-      <th>Url</th>
+      <th>Domain</th>
       <th>Level</th>
+      <th>Quality</th>
     </tr>
   </thead>
 
@@ -14,8 +15,9 @@
   <tr>
     <td><%= link_to critter.user.username, critter.user %></td>
     <td><%= link_to critter.name, critter %></td>
-    <td><%= critter.url %></td>
+    <td><%= critter.domain %></td>
     <td><%= critter.level %></td>
+    <td><%= critter.quality %></td>
   </tr>
 <% end %>
 </table>

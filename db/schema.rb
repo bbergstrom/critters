@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912025528) do
+ActiveRecord::Schema.define(:version => 20111127071455) do
 
   create_table "critters", :force => true do |t|
     t.string   "name"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20110912025528) do
     t.boolean  "has_absorb_dark"
     t.boolean  "has_crit"
     t.boolean  "has_dodge"
+    t.integer  "quality"
+    t.string   "domain"
   end
 
   create_table "users", :force => true do |t|

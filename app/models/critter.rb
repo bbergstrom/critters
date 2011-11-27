@@ -16,6 +16,7 @@ class Critter < ActiveRecord::Base
   BASE_STATS = {
     :sex => 'M',
     :level => 1,
+    :quality => 0,
     :hp => 10,
     :dodge => 1,
     :crit => 1,
@@ -171,7 +172,7 @@ class Critter < ActiveRecord::Base
   def birth
     us = url_status
     if us
-      domain = PublicSuffixService.parse(url).domain
+      self.domain = PublicSuffixService.parse(url).domain
       dna = parse_dna(domain)
       self.attributes = build_stats(dna)
       logger.debug "Critter #{name} built from #{domain}: #{dna.inspect}"
@@ -229,19 +230,25 @@ class Critter < ActiveRecord::Base
         case rule
         when :add_one
           new_stat_value = add(stats[att], 1)
+          quality_change = 1
         when :add_one_per_level
           new_stat_value = add_per_level(stats[att], stats[:level], 1)
+          quality_change = 1
         when :add_10_per_level
           new_stat_value = add_per_level(stats[att], stats[:level], 10)
+          quality_change = 1
         when :double
           new_stat_value = double(stats[att])
+          quality_change = 1
         when :unable
           new_stat_value = unable()
+          quality_change = -1
         else
           logger.warn 'Unknown genetic trait, cannot process: ' + rule.to_s
         end
-        logger.debug "Stat trasformation for #{att.inspect} from #{stats[att].inspect} to #{new_stat_value.inspect}"
+        logger.debug "Stat trasformation for #{att.inspect} from #{stats[att].inspect} to #{new_stat_value.inspect}. Quality change: #{quality_change}."
         stats[att] = new_stat_value
+        stats[:quality] += quality_change
       end # genetics.each
     end # dna.each
 
@@ -266,6 +273,8 @@ class Critter < ActiveRecord::Base
   end
 
 end
+
+
 
 
 # == Schema Information
@@ -310,5 +319,7 @@ end
 #  has_absorb_dark  :boolean
 #  has_crit         :boolean
 #  has_dodge        :boolean
+#  quality          :integer
+#  domain           :string(255)
 #
 

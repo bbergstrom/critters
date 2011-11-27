@@ -3,7 +3,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Url</th>
+      <th>Domain</th>
       <th>Sex</th>
       <th>Level</th>
       <th>Hp</th>
@@ -16,8 +16,9 @@
 <% @critters.each do |critter| %>
   <tr>
     <td><%= critter.name %></td>
-    <td><%= critter.url %></td>
+    <td><%= critter.domain %></td>
     <td><%= critter.sex %></td>
+    <td><%= critter.quality %></td>
     <td><%= critter.level %></td>
     <td><%= critter.hp %></td>
     <td><%= link_to 'Details', critter %></td>

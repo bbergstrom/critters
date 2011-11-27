@@ -7,6 +7,8 @@ class CritterTest < ActiveSupport::TestCase
   end
 end
 
+
+
 # == Schema Information
 #
 # Table name: critters
@@ -49,5 +51,7 @@ end
 #  has_absorb_dark  :boolean
 #  has_crit         :boolean
 #  has_dodge        :boolean
+#  quality          :integer
+#  domain           :string(255)
 #
 
