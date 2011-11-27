@@ -98,6 +98,9 @@ body p {
 .button {
   margin-bottom: 10px;
 }
+table tr:hover {
+  background-color:#FE6;
+}
 
 /* Forms */
 div.field {
@@ -158,10 +161,16 @@ table.critters th {
   border-radius: 10px 10px 0 0;
 
 }
+table.critters tr {
+}
 table.critters td {
   padding:10px;
   border:1px dotted #DDD;
   border-top:none;
+}
+table.critters td a {
+  display: block;
+  text-align: center;
 }
 
 /* Top and recent critters */

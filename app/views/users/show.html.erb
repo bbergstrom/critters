@@ -1,5 +1,8 @@
 <% if logged_in? %>
-  <p><%= link_to "Edit profile", edit_current_user_path, :class => 'button right' %></p>
+  <div class="user_controls right">
+    <p class="edit_profile"><%= link_to "Edit profile", edit_current_user_path, :class => 'button' %></p>
+    <p class="new_critter"><%= link_to "New Critter", new_critter_path, :class => 'button' %></p>
+  </div>
 <% end %>
 <%= gravatar_for @user, { :size => 100 } %>
 <small>Set your <a href="http://gravatar.com" target="_blank">Gravatar</a></small>
