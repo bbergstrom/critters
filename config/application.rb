@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 module Critters
   class Application < Rails::Application
     config.autoload_paths << "#{config.root}/lib"    
-    config.action_view.stylesheet_expansions[:defaults] = %w(style jquery-ui application)
+    config.action_view.stylesheet_expansions[:defaults] = %w(style jquery-ui flash application)
     # Added by the Rails HTML5 Boilerplate Template
     # https://github.com/russfrisch/Rails-HTML5-Boilerplate-Template, written by Russ Frisch
     config.action_view.javascript_expansions[:defaults] = %w(jquery jquery_ujs jquery-ui plugins)
