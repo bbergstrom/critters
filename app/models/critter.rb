@@ -11,6 +11,7 @@ class Critter < ActiveRecord::Base
                   :domain_name => true
   validates :user_id, :presence => true
   before_create :birth
+  serialize :dna
 
   # Stats to use at birth.
   BASE_STATS = {
@@ -173,7 +174,7 @@ class Critter < ActiveRecord::Base
     us = url_status
     if us
       self.domain = PublicSuffixService.parse(url).domain
-      dna = parse_dna(domain)
+      self.dna = parse_dna(domain)
       self.attributes = build_stats(dna)
       logger.debug "Critter #{name} built from #{domain}: #{dna.inspect}"
     else

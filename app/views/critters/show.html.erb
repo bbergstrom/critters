@@ -1,5 +1,10 @@
 <div class="critter_details">
-  <table class="stats">
+  <table class="stats core_stats">
+    <caption>Stats</caption>
+     <thead>
+      <th>Stat</th>
+      <th>Value</th>
+    </head>
     <tbody>
     <tr>
       <td>Owner:</td>
@@ -63,7 +68,12 @@
     </tr>
   </tbody>
   </table>
-  <table class="element_stats">
+  <table class="stats element_stats">
+    <caption>Element Stats</caption>
+    <thead>
+      <th>Stat</th>
+      <th>Value</th>
+    </head>
     <tbody>
     <tr>
       <td>Fire damage:</td>
@@ -162,6 +172,26 @@
     </tr>
   </tbody>
   </table>
+  <% if @critter.user == current_user && !@critter.dna.nil? %>
+    <table class="stats dna">
+      <caption>DNA</caption>
+      <thead>
+        <th>Chromosome</th>
+        <th>Alleles</th>
+      </thead>
+      <tbody>
+        <% @critter.dna.each do |chromo, alleles| %>
+          <tr>
+            <td><%= chromo %></td>
+            <td><%= alleles %> </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>All Other Chromosomes</td>
+          <td>rr</td>
+      </tbody>
+    </table>
+  <% end %>
 </div>
 <div class="actions">
   <%= link_to 'Edit', edit_critter_path(@critter) %> |

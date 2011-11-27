@@ -119,6 +119,9 @@ div.field label {
   font-weight:bold;
 }
 div.actions {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 10px;
   padding:10px;
 }
 span.disability {
@@ -156,10 +159,12 @@ ul.users li span {
 table.critters {
   width:100%;
 }
-table.critters caption {
+table.critters caption,
+table.stats caption {
   font-size: 1.4em;
 }
-table.critters th {
+table.critters th,
+table.stats th {
   padding:3px 10px;
   background-color:#EFEFEF;
   -moz-border-radius: 10px 10px 0 0;
@@ -168,12 +173,14 @@ table.critters th {
 }
 table.critters tr {
 }
-table.critters td {
+table.critters td,
+table.stats td {
   padding:10px;
   border:1px dotted #DDD;
   border-top:none;
 }
-table.critters td a {
+table.critters td a,
+table.stats td a {
   display: block;
   text-align: center;
 }
@@ -193,13 +200,15 @@ table.recent_critters {
 .critter_details table tr td {
   padding: 5px;
 }
-.critter_details .stats,
-.critter_details .element_stats {
+.critter_details .stats {
   width: 400px;
 }
-.critter_details .stats {
+.critter_details .core_stats {
   float: left;
 }
 .critter_details .element_stats {
   margin-left:420px;
+}
+.critter_details .dna tbody td {
+  text-transform: uppercase;
 }

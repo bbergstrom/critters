@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127071455) do
+ActiveRecord::Schema.define(:version => 20111127080007) do
 
   create_table "critters", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20111127071455) do
     t.boolean  "has_dodge"
     t.integer  "quality"
     t.string   "domain"
+    t.text     "dna"
   end
 
   create_table "users", :force => true do |t|
