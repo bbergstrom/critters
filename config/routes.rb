@@ -1,5 +1,7 @@
 Critters::Application.routes.draw do
 
+  resources :breeding
+
   resources :critters
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
@@ -75,8 +77,16 @@ Critters::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
 end
 #== Route Map
-# Generated on 25 Nov 2011 23:03
+# Generated on 27 Nov 2011 21:20
 #
+#    breeding_index GET    /breeding(.:format)          {:action=>"index", :controller=>"breeding"}
+#                   POST   /breeding(.:format)          {:action=>"create", :controller=>"breeding"}
+#      new_breeding GET    /breeding/new(.:format)      {:action=>"new", :controller=>"breeding"}
+#     edit_breeding GET    /breeding/:id/edit(.:format) {:action=>"edit", :controller=>"breeding"}
+#          breeding GET    /breeding/:id(.:format)      {:action=>"show", :controller=>"breeding"}
+#                   PUT    /breeding/:id(.:format)      {:action=>"update", :controller=>"breeding"}
+#                   DELETE /breeding/:id(.:format)      {:action=>"destroy", :controller=>"breeding"}
+#          critters GET    /critters(.:format)          {:action=>"index", :controller=>"critters"}
 #                   POST   /critters(.:format)          {:action=>"create", :controller=>"critters"}
 #       new_critter GET    /critters/new(.:format)      {:action=>"new", :controller=>"critters"}
 #      edit_critter GET    /critters/:id/edit(.:format) {:action=>"edit", :controller=>"critters"}

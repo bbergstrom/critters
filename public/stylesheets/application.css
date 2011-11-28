@@ -35,8 +35,13 @@ body p {
   margin:10px;
   text-shadow:5px 5px 10px #CCC;
 }
-#header #current_user_status {
+#header #user_panel {
   float: right;
+  background-color: #DDD;
+}
+#header #current_user_status {
+  padding: 5px;
+  text-align: right;
   font-style: italics;
   font-size: .9em;
 }
@@ -44,8 +49,8 @@ body p {
 #nav {
   clear:both;
   background-color:#DDD;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  -moz-border-radius: 10px 0 10px 10px;
+  border-radius: 10px 0px 10px 10px;
 }
 #nav a,
 #nav a:active,
@@ -101,7 +106,7 @@ body p {
   float:left;
 }
 .button {
-  margin-bottom: 10px;
+  margin: 5px;
 }
 table tr:hover {
   background-color:#FE6;
@@ -203,12 +208,18 @@ table.recent_critters {
 .critter_details .stats {
   width: 400px;
 }
-.critter_details .core_stats {
+.critter_details .core_stats,
+.critter_details .dna {
   float: left;
+  clear: both;
 }
-.critter_details .element_stats {
+.critter_details .element_stats,
+.critter_details .ancestry {
   margin-left:420px;
 }
 .critter_details .dna tbody td {
   text-transform: uppercase;
+}
+.critters-show .actions {
+  clear: both;
 }

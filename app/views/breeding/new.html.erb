@@ -1,0 +1,14 @@
+<% title "Breed your critters" %>
+
+<p>Choose your critters to breed.  They are listed by name, with quality.</p>
+<%= form_tag breeding_index_path do %>
+  <div class="field">
+    <%= label_tag :female %>
+    <%= select_tag :female, options_from_collection_for_select(@females, 'id', 'name_and_quality') %>
+  </div>
+  <div class="field">
+    <%= label_tag :male %>
+    <%= select_tag :male, options_from_collection_for_select(@males, 'id', 'name_and_quality') %>
+  </div>
+  <div class="actions"><%= submit_tag "Breed" %></div>
+<% end %>

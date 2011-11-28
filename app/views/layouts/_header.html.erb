@@ -4,11 +4,18 @@
   </hgroup>
 
   <% if logged_in? %>
-    <div id="current_user_status">
-      Logged in as 
-      <%= link_to current_user.username, current_user %>
-      , master of 
-      <%= pluralize current_user.critters.count, 'critter' %>.
+    <div id="user_panel">
+      <div id="current_user_status">
+        Logged in as 
+        <%= link_to current_user.username, current_user %>
+        , master of 
+        <%= pluralize current_user.critters.count, 'critter' %>.
+      </div>
+      <div id="user_controls">
+        <%= link_to "Log out", logout_path, :class => 'button right' %>
+        <%= link_to 'Breed', new_breeding_path, :class => 'button right' %>
+        <%= link_to 'Hunt', new_critter_path, :class => 'button right' %>
+      </div>
     </div>
   <% end %>
 	
@@ -19,7 +26,6 @@
       <% if logged_in? %>
         <li><%= link_to "Players", users_path, :class => current_page_class(users_path) %></li>
         <li><%= link_to "Critters", critters_path, :class => current_page_class(critters_path) %> </li>
-        <li><%= link_to "Log out", logout_path, :class => current_page_class(logout_path) %></li>
       <% else %>
         <li><%= link_to "Sign up", signup_path, :class => current_page_class(signup_path) %></li>
         <li><%= link_to "Log in", login_path, :class => current_page_class(login_path) %></li>

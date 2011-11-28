@@ -4,11 +4,15 @@ require 'public_suffix_service'
 
 class Critter < ActiveRecord::Base
   belongs_to :user
+  belongs_to :mother, :class_name => "Critter",
+    :foreign_key => "mother_id"
+  belongs_to :father, :class_name => "Critter",
+    :foreign_key => "father_id"
   #attr_accessible :name, :url
   validates :name, :presence => true
-  validates :url, :presence => true,
-                  :on => :create,
-                  :domain_name => true
+  validates :url, :on => :create,
+                  :domain_name => true,
+                  :unless => :bred
   validates :user_id, :presence => true
   before_create :birth
   serialize :dna
@@ -16,6 +20,7 @@ class Critter < ActiveRecord::Base
   # Stats to use at birth.
   BASE_STATS = {
     :sex => 'M',
+    :bred => false,
     :level => 1,
     :quality => 0,
     :hp => 10,
@@ -171,16 +176,55 @@ class Critter < ActiveRecord::Base
   }
 
   def birth
-    us = url_status
-    if us
-      self.domain = PublicSuffixService.parse(url.sub(/(http|https):\/\//, '')).domain.downcase
-      self.dna = parse_dna(domain)
-      self.attributes = build_stats(dna)
-      logger.debug "Critter #{name} built from #{domain}: #{dna.inspect}"
+    if !bred
+      us = url_status
+      if us
+        self.domain = PublicSuffixService.parse(url.sub(/(http|https):\/\//, '')).domain.downcase
+        self.dna = parse_dna(domain)
+        self.attributes = build_stats(dna)
+        logger.debug "Critter #{name} built from #{domain}: #{dna.inspect}"
+      else
+        errors.add :url, " is a facade.  Only non-redirecting domains are habitats for critters."
+        return false
+      end
     else
-      errors.add :url, " is a facade.  Only non-redirecting domains are habitats for critters."
-      return false
+      self.url = 'Bred in captivity'
+      self.domain = 'Bred'
+      self.dna = breed_dna
+      self.attributes = build_stats(dna)
     end
+  end
+
+  def breed_dna
+    result = {}
+    logger.debug "Breeding female #{mother.name} and male #{father.name}."
+    LETTERS.each do |l|
+      if mother.dna.include?(l) || father.dna.include?(l)
+        result[l] = [:r, :r]
+      end
+      if mother.dna.include?(l)
+        r = rand(mother.dna[l].length)
+        result[l][0] = mother.dna[l][r]
+      end
+      if father.dna.include?(l)
+        r = rand(father.dna[l].length)
+        result[l][1] = father.dna[l][r]
+      end
+    end
+    NUMBERS.each do |n|
+      if mother.dna.include?(n) || father.dna.include?(n)
+        result[n] = [:r, :r]
+      end
+      if mother.dna.include?(n)
+        r = rand(mother.dna[n].length)
+        result[n][0] = mother.dna[n][r]
+      end
+      if father.dna.include?(n)
+        r = rand(father.dna[n].length)
+        result[n][1] = father.dna[n][r]
+      end
+    end
+    return result
   end
 
   def url_status
@@ -274,6 +318,13 @@ class Critter < ActiveRecord::Base
     return false
   end
 
+  def name_and_quality
+    return "#{name} (#{quality})"
+  end
+
+  def children
+    Critter.where('mother_id = ? OR father_id = ?', id, id).order('created_at DESC')
+  end
 end
 
 

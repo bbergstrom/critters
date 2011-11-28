@@ -192,6 +192,35 @@
       </tbody>
     </table>
   <% end %>
+  <% if @critter.user == current_user %>
+    <table class="stats ancestry">
+      <caption>Ancestry</caption>
+      <thead>
+        <th>Relation</th>
+        <th>Critter</th>
+      </thead>
+      <tbody>
+        <% if !@critter.mother.nil? %>
+          <tr>
+            <td>Mother</td>
+            <td><%= link_to @critter.mother.name, @critter.mother %></td>
+          </tr>
+        <% end %> 
+        <% if !@critter.father.nil? %>
+          <tr>
+            <td>Father</td>
+            <td><%= link_to @critter.father.name, @critter.father %></td>
+          </tr>
+        <% end %>
+        <% @critter.children.each do |child| %>
+          <tr>
+            <td>Child</td>
+            <td><%= link_to child.name, child %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>
 <div class="actions">
   <%= link_to 'Edit', edit_critter_path(@critter) %> |
