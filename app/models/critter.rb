@@ -138,34 +138,34 @@ class Critter < ActiveRecord::Base
     'z' => {
       :has_absorb_water => :unable
     },
-    0 => {
+    '0' => {
       :light_damage => :add_one_per_level
     },
-    1 => {
+    '1' => {
       :has_light_damage => :unable
     },
-    2 => {
+    '2' => {
       :has_absorb_light => :unable
     },
-    3 => {
+    '3' => {
       :light_damage => :double
     },
-    4 => {
+    '4' => {
       :absorb_light => :add_one_per_level
     },
-    5 => {
+    '5' => {
       :dark_damage => :add_one_per_level
     },
-    6 => {
+    '6' => {
       :has_dark_damage => :unable
     },
-    7 => {
+    '7' => {
       :has_absorb_dark => :unable
     },
-    8 => {
+    '8' => {
       :dark_damage => :double
     },
-    9 => {
+    '9' => {
       :absorb_dark => :add_one_per_level
     }
   }
@@ -173,7 +173,7 @@ class Critter < ActiveRecord::Base
   def birth
     us = url_status
     if us
-      self.domain = PublicSuffixService.parse(url.sub(/(http|https):\/\//, '')).domain
+      self.domain = PublicSuffixService.parse(url.sub(/(http|https):\/\//, '')).domain.downcase
       self.dna = parse_dna(domain)
       self.attributes = build_stats(dna)
       logger.debug "Critter #{name} built from #{domain}: #{dna.inspect}"
@@ -201,10 +201,11 @@ class Critter < ActiveRecord::Base
       end
     end
     NUMBERS.each do |n|
-      i = url.index(n)
-      if url.include?(n) && !i.nil? && i < 18
+      ns = n.to_s
+      i = url.index(ns)
+      if url.include?(ns) && !i.nil? && i < 18
         r = rand(ALLELE_PAIRS.length)
-        result[n] = ALLELE_PAIRS[r]
+        result[ns] = ALLELE_PAIRS[r]
       end
     end
     return result
