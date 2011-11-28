@@ -227,6 +227,14 @@ class Critter < ActiveRecord::Base
     return result
   end
 
+  def level_up
+    if mother.nil? || father.nil? 
+      return false
+    end
+    base = [mother.level, father.level].min
+    return (base + 1)
+  end
+
   def url_status
     c = Curl::Easy.http_head url
     c.perform
@@ -260,6 +268,7 @@ class Critter < ActiveRecord::Base
   def build_stats(dna)
     stats = {}
     stats.merge!(BASE_STATS)
+    stats[:level] = level_up || stats[:level]
     stats[:sex] = SEXES[rand(2)]
     # TODO: change mass assignment so attr_accessible security can be turned back on
     # dna = { a => 'AA' } where a is chromo and A is allele
@@ -319,7 +328,7 @@ class Critter < ActiveRecord::Base
   end
 
   def name_and_quality
-    return "#{name} (#{quality})"
+    return "Level: #{level}, Quality: #{quality}, Name: #{name}"
   end
 
   def children

@@ -23,7 +23,7 @@
     <td><%= critter.hp %></td>
     <td><%= link_to 'Details', critter %></td>
     <td><%= link_to 'Edit', edit_critter_path(critter) %></td>
-    <td><%= link_to 'Destroy', critter, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', critter, :confirm => 'Are you sure you want to take this critter out back?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
