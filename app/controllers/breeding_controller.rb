@@ -1,7 +1,7 @@
 class BreedingController < ApplicationController
   def new
-    @males = Critter.where(:sex => 'M').order('level DESC, quality DESC')
-    @females = Critter.where(:sex => 'F').order('level DESC, quality DESC')
+    @males = Critter.where(:sex => 'M').order('level DESC, quality DESC, name ASC')
+    @females = Critter.where(:sex => 'F').order('level DESC, quality DESC, name ASC')
   end
 
   def create
