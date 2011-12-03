@@ -1,7 +1,6 @@
-<% if logged_in? %>
+<% if logged_in? && current_user == @user %>
   <div class="user_controls right">
     <p class="edit_profile"><%= link_to "Edit profile", edit_current_user_path, :class => 'button' %></p>
-    <p class="new_critter"><%= link_to "New Critter", new_critter_path, :class => 'button' %></p>
   </div>
 <% end %>
 <%= gravatar_for @user, { :size => 100 } %>
