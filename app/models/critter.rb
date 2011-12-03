@@ -14,6 +14,7 @@ class Critter < ActiveRecord::Base
                   :domain_name => true,
                   :unless => :bred
   validates :user_id, :presence => true
+  validates_with CritterLimitValidator, :on => :create
   before_create :birth
   serialize :dna
 
